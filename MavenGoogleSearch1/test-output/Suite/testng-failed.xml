@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]">
+  <parameter name="SiteAddress" value="https://www.google.co.in"/>
+  <parameter name="name" value="Swapanpreet"/>
+  <test name="DataFactory(failed)">
+    <parameter name="SiteAddress" value="https://www.google.co.in"/>
+    <parameter name="name" value="Swapanpreet"/>
+    <classes>
+      <class name="com.googlesearch.MavenGoogleSearch1.GoogleSearch">
+        <methods>
+          <include name="OpenBrowser" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.googlesearch.MavenGoogleSearch1.GoogleSearch -->
+    </classes>
+  </test> <!-- DataFactory(failed) -->
+</suite> <!-- Failed suite [Suite] -->
