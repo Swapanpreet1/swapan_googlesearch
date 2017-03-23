@@ -2,10 +2,9 @@ package com.googlesearch.MavenGoogleSearch1;
 
 import org.testng.annotations.Test;
 import utils.com.GoogleSearchMain;
-
-
-
-import org.testng.annotations.Parameters;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
@@ -16,34 +15,31 @@ public class GoogleSearch {
 	
 	 WebDriver driver;
 	 WebElement element;
-	 
-	 //GoogleSearchMain gs;
-	 
-	/* @BeforeClass
-	 
-     public void setUp(String value) {
-       // Launch browser and open application under test
-		 driver=gs.webDriver(value);
-	 }
-*/
-	
-	 @Test  
-	 @Parameters({"SiteAddress","name"})
-
-	 public void OpenBrowser(String siteaddress,String name) {
-		 
-		  PropertyConfigurator.configure("log4j.properties");
-		  Logger logger = Logger.getLogger("GoogleSearch");
-		  logger.info(" *********** GOOGLESEARCH ***************");
-	 	  GoogleSearchMain gs=new GoogleSearchMain();
-	 	  driver=gs.getUrlDriver(siteaddress);
-	 	  element = gs.getElement(name);
-	      element.sendKeys(name);
-	      element.submit();
-	      
-	   }
+	 Properties properties = new Properties();
+	 FileInputStream fileInput;
+     String fileName = "resource.properties";
+	 GoogleSearchMain gs =new  GoogleSearchMain();
+			
+     @Test
+     public void searchName() throws InterruptedException, IOException {
+			
+		         PropertyConfigurator.configure("log4j.properties");
+				 Logger logger = Logger.getLogger("GoogleSearch");
+				 logger.info(" *********** GOOGLESEARCH ***************");
+				 logger.info(" *********** READING RESOURCE.PROPERTIES FILE ***************");
+				 fileInput =gs.readFile(fileName);
+				 properties.load(fileInput);
+				 System.setProperty(properties.getProperty("driverName"),properties.getProperty("driverPath"));	
+				 logger.info(" ***********OPENING BROWSER***************");
+				 driver = gs.getDriver(); 
+				 gs.openBrowser(properties.getProperty("urlLink"));
+				 logger.info(" ***********FINDING NAME BY USING ID***************");
+				 element = gs.findById(properties.getProperty("searchId"));
+				 gs.enter(element, properties.getProperty("name"));
+				}	
 }
 
+ 
 
 
 

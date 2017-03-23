@@ -5,7 +5,7 @@
     <classes>
       <class name="com.googlesearch.MavenGoogleSearch1.GoogleSearch">
         <methods>
-          <include name="OpenBrowser"/>
+          <include name="namefinder"/>
         </methods>
       </class> <!-- com.googlesearch.MavenGoogleSearch1.GoogleSearch -->
     </classes>
